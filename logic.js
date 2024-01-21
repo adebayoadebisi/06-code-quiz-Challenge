@@ -1,15 +1,15 @@
-const startButton = document.getElementById("start");
-const questionTitle = document.getElementById("question-title");
-const choicesContainer = document.getElementById("choices");
-const timerDisplay = document.getElementById("timer");
-const finalScoreDisplay = document.getElementById("final-score");
-const initialsInput = document.getElementById("initials");
-const submitButton = document.getElementById("submit");
+let startButton = document.getElementById("start");
+let questionTitle = document.getElementById("question-title");
+let choicesContainer = document.getElementById("choices");
+let timerDisplay = document.getElementById("time");
+let finalScoreDisplay = document.getElementById("final-score");
+let initialsInput = document.getElementById("initials");
+let submitButton = document.getElementById("submit");
 
-const startScreen = document.getElementById("start-screen");
-const questionsContainer = document.getElementById("questions");
-const endScreen = document.getElementById("end-screen");
-const feedbackContainer = document.getElementById("feedback");
+let startScreen = document.getElementById("start-screen");
+let questionsContainer = document.getElementById("questions");
+let endScreen = document.getElementById("end-screen");
+let feedbackContainer = document.getElementById("feedback");
 
 let currentQuestionIndex = 0;
 let timeLeft = 60;
@@ -22,7 +22,8 @@ function startQuiz() {
     timerInterval = setInterval(function () {
         timeLeft--;
         timerDisplay.textContent = timeLeft;
-        if (timeLeft <= 0) {
+        if (timeLeft <= 1) {
+            timerDisplay.textContent = 0;
             endQuiz();
         }
     }, 1000);
@@ -30,22 +31,24 @@ function startQuiz() {
 }
 
 function displayQuestion(question) {
-    questionTitle.textContent = question.title;
+    questionTitle.textContent = question.question;
     choicesContainer.innerHTML = '';
 
     for (let i = 0; i < question.choices.length; i++) {
-        const choice = question.choices[i];
-        const button = document.createElement('button');
+        let choice = question.choices[i];
+        let button = document.createElement('button');
         button.textContent = choice;
         button.setAttribute('data-index', i);
-        button.addEventListener('click', function () {
-            checkAnswer(i);
-        });
+        button.onclick = checkAnswer;
         choicesContainer.appendChild(button);
     }
 }
-function checkAnswer(i) {
-    const question = questions[currentQuestionIndex];
+function checkAnswer(e) {
+    let i = e.target.getAttribute('data-index');
+    // console.log(i);
+    // currentQuestionIndex++;
+    // displayQuestion(questions[currentQuestionIndex])
+    let question = questions[currentQuestionIndex];
     if (question.choices[i] === question.answer) {
         // The answer is correct
         score++;
