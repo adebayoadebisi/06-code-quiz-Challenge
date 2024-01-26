@@ -30,4 +30,27 @@
             answer: 3,
         },
     ];
+    
+    // Shuffle the questions array
+    for (let i = 0; i < questions.length; i++) {
+        let j = Math.floor(Math.random() * questions.length);
+        let temp = questions[i];
+        questions[i] = questions[j];
+        questions[j] = temp;
+    }
+
+    // Randomize the order of the choices
+    // questions.forEach(question => {
+    //     // set correct answer
+    //     question.answer = Math.floor(Math.random() * question.choices.length);
+    //     // shuffle choices
+    //     for (let i = 0; i < question.choices.length; i++) {
+    //         let j = Math.floor(Math.random() * question.choices.length);
+    //         let temp = question.choices[i];
+    //         question.choices[i] = question.choices[j];
+    //         question.choices[j] = temp;
+    //     }
+    // }
+    // );
+    
 
