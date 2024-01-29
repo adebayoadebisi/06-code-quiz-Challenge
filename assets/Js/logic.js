@@ -12,7 +12,7 @@ let endScreen = document.getElementById("end-screen");
 let feedbackContainer = document.getElementById("feedback");
 
 let currentQuestionIndex = 0;
-let timeLeft = 60;
+let timeLeft = 100;
 let score = 0;
 let timerInterval;
 
