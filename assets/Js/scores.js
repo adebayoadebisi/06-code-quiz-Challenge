@@ -13,6 +13,7 @@ function displayHighScores() {
         })
         .join('');
 }
+
 // Function to clear scores if more than 20 highscores in local storage to save memory.
 function clearScores() {
     if (confirm('Are you sure you want to clear the high scores?')) {

@@ -20,6 +20,7 @@ let timerInterval;
 let sfxCorrect = new Audio("assets/sfx/correct.wav");
 let sfxIncorrect = new Audio("assets/sfx/incorrect.wav");
 
+// Function to start the quiz and display the first question 
 function startQuiz() {
     startScreen.classList.add('hide');
     questionsContainer.classList.remove('hide');
@@ -34,6 +35,7 @@ function startQuiz() {
     displayQuestion(questions[currentQuestionIndex]);
 }
 
+// Function to display the current question and choices 
 function displayQuestion(question) {
     questionTitle.textContent = question.question;
     choicesContainer.innerHTML = '';
@@ -48,6 +50,7 @@ function displayQuestion(question) {
     }
 }
 
+// Function to display feedback for correct or incorrect answers
 function showFeedback(message) {
     feedbackContainer.textContent = message;
     feedbackContainer.setAttribute('class', `feedback`);
@@ -56,30 +59,22 @@ function showFeedback(message) {
     }, 1000);
 }
 
+// Function to check if the answer is correct or incorrect
+// If the answer is correct, add 10 points to the score
+// If the answer is incorrect, deduct 10 seconds from the timer
 function checkAnswer(e) {
     let i = e.target.getAttribute('data-index');
-    console.log(i);
-    // currentQuestionIndex++;
-    // displayQuestion(questions[currentQuestionIndex])
-    // console.log(questions[currentQuestionIndex]);
-    let question = questions[currentQuestionIndex];
-    // console.log(question.choices[i]);
-    // console.log(question.answer);
-    // console.log(question.choices[question.answer]);
+    let question = questions[currentQuestionIndex];    
     if (question.choices[i] === question.choices[question.answer]) {
         sfxCorrect.play();
-        showFeedback('Correct!');
-        // console.log("correct");
-        // The answer is correct
-        score += 10; // Add 10 points to the score
-        // feedbackContainer.textContent = "Correct!";
+        showFeedback('Correct!');       
+        score += 10;        
     } else {
         sfxIncorrect.play();
-        showFeedback('Incorrect!');
-        // The answer is incorrect
-        timeLeft -= 10; // Deduct 10 seconds as a penalty
-        // feedbackContainer.textContent = "Incorrect!";
+        showFeedback('Incorrect!');        
+        timeLeft -= 10;     
     }
+
     // Move to the next question
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
@@ -91,23 +86,7 @@ function checkAnswer(e) {
     }
 }
 
-// function checkAnswer(answerIndex) {
-//     const question = questions[currentQuestionIndex];
-//     if (answerIndex === question.answer) {
-//         showFeedback('Correct!', 'correct');
-//         score++;
-//     } else {
-//         showFeedback('Incorrect!', 'incorrect');
-//         timeLeft -= 10;
-//     }
-//     currentQuestionIndex++;
-//     if (currentQuestionIndex >= questions.length) {
-//         endQuiz();
-//     } else {
-//         displayQuestion(questions[currentQuestionIndex]);
-//     }
-// }
-
+// End the quiz and display the final score 
 function endQuiz() {
     clearInterval(timerInterval);
     questionsContainer.classList.add('hide');
@@ -115,6 +94,8 @@ function endQuiz() {
     finalScoreDisplay.textContent = score;
 }
 
+// Save the score to local storage and move to the high scores page
+// Delete the last high score if there are more than 20 high scores in local storage to save memory.
 function saveScore() {
     const initials = initialsInput.value;
     if (initials === '') {
@@ -135,29 +116,8 @@ function saveScore() {
     }
     localStorage.setItem('highScores', JSON.stringify(highScores));
     window.location.href = 'highscores.html';
-}
-// // function to display the last 10 highscores in order after initials are entered and quiz is over.
-// functdisplayHighScoresion () {
-//     const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
-//     highScores.sort(function (a, b) {
-//         return b.score - a.score;
-//     });
-//     console.log(highScores);
-//     highScores.splice(10);
-//     const highScoreList = document.getElementById('highScores');
-//     highScoreList.innerHTML = highScores
-//         .map(function (score) {
-//             return `<li class="high-score">${score.initials} - ${score.score}</li>`;
-//         })
-//         .join('');
-// }
-// // Function to clear scores if more than 20 highscores in local storage to save memory.
-// function clearScores() {
-//     if (confirm('Are you sure you want to clear the high scores?')) {
-//         localStorage.removeItem = 'highScores';
-//         window.location.reload();
-//     }
-// }
+} 
 
+// Event listeners
 startButton.addEventListener('click', startQuiz);
 submitButton.addEventListener('click', saveScore);

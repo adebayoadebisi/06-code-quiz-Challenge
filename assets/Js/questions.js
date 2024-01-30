@@ -58,31 +58,3 @@
         questions[i] = questions[j];
         questions[j] = temp;
     }
-
-    // // Randomize the order of the choices but still ensure correct answer is detected as correct answer and not just the correct index.
-    // for (let i = 0; i < questions.length; i++) {
-    //     // set correct answer
-    //     questions[i].answer = Math.floor(Math.random() * questions[i].choices.length);
-    //     // shuffle choices
-    //     for (let j = 0; j < questions[i].choices.length; j++) {
-    //         let k = Math.floor(Math.random() * questions[i].choices.length);
-    //         let temp = questions[i].choices[j];
-    //         questions[i].choices[j] = questions[i].choices[k];
-    //         questions[i].choices[k] = temp;
-    //     }
-    // }
-
-    // questions.forEach(question => {
-    //     // set correct answer
-    //     question.answer = Math.floor(Math.random() * question.choices.length);
-    //     // shuffle choices
-    //     for (let i = 0; i < question.choices.length; i++) {
-    //         let j = Math.floor(Math.random() * question.choices.length);
-    //         let temp = question.choices[i];
-    //         question.choices[i] = question.choices[j];
-    //         question.choices[j] = temp;
-    //     }
-    // }
-    // );
-    
-
