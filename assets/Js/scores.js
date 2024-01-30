@@ -4,7 +4,6 @@ function displayHighScores() {
     highScores.sort(function (a, b) {
         return b.score - a.score;
     });
-    console.log(highScores);
     highScores.splice(10);
     const highScoreList = document.getElementById('highScores');
     highScoreList.innerHTML = highScores
