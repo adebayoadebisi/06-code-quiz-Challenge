@@ -6,7 +6,11 @@
 This activity requires the building of a timed coding quiz with multiple-choice questions. The app will run in the browser, and will feature dynamically updated HTML and CSS powered by JavaScript code. It will have a clean and polished user interface that is responsive, ensuring that it adapts to multiple screen sizes.
 
 ## User Story
-AS a new employee setting up my secure company profile I WANT to randomly generate a password that meets the company’s security criteria SO THAT I can access the companies intranet securely.
+```
+AS A coding boot camp student
+I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
+SO THAT I can gauge my progress compared to my peers
+```
 
 ## Acceptance Criteria
 - **GIVEN** a user opens the quiz,
